@@ -1,0 +1,28 @@
+.header {
+  padding: 10px 0;
+  background-color: blue;
+  margin-bottom: 5px;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  width: 300px;
+  height: 30px;
+  border: none;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-size: 16px;
+}
+
+.button {
+  border: none;
+  height: 32px;
+  background: white;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}

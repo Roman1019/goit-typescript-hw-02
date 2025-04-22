@@ -1,0 +1,22 @@
+.buttonDiv {
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  background-color: rgb(5, 102, 182);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+  border: none;
+  width: 150px;
+  border-radius: 3px;
+}
+
+.button:hover {
+  background-color: blue;
+}
