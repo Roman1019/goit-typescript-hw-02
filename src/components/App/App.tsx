@@ -1,27 +1,29 @@
 import { useState, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-import SearchBar from "../SearchBar/SearchBar.jsx";
-import { fetchArticles } from "../../articleSearch.js";
-import ImageGallery from "../ImageGallery/ImageGallery.jsx";
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
-import ImageModal from "../ImageModal/ImageModal.jsx";
-import Loading from "../Loading/Loading.jsx";
+import SearchBar from "../SearchBar/SearchBar";
+import { fetchArticles } from "../../articleSearch";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../ImageModal/ImageModal";
+import Loading from "../Loading/Loading";
+import { Article } from "./App.types";
 
 export default function App() {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<Article[]>([]);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<boolean>(false);
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
 
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  console.log("selectedImage", selectedImage);
 
-  const handleSearch = (search) => {
+  const handleSearch = (search: string) => {
     setSearchTerm(`${search}/${Date.now()}`);
     setPage(1);
     setArticles([]);
