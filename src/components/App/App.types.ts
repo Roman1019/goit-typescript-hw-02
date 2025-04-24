@@ -1,4 +1,4 @@
-export type Article = {
+export type Images = {
   id: string;
   urls: {
     small: string;

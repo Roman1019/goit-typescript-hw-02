@@ -1,6 +1,7 @@
 import css from "./ImageCard.module.css";
+import { PropsImageCard } from "./ImageCard.types";
 
-export default function ImageCard({ item, onImageClick }) {
+export const ImageCard: React.FC<PropsImageCard> = ({ item, onImageClick }) => {
   return (
     <div>
       <img
@@ -9,8 +10,10 @@ export default function ImageCard({ item, onImageClick }) {
         alt=""
         width={360}
         height={100}
-        onClick={() => onImageClick(item.urls.full)}
+        onClick={(event: React.MouseEvent<HTMLImageElement>) =>
+          onImageClick(item.urls.full)
+        }
       />
     </div>
   );
-}
+};

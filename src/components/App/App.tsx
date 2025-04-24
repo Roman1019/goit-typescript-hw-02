@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-import SearchBar from "../SearchBar/SearchBar";
+import { SearchBar } from "../SearchBar/SearchBar";
 import { fetchArticles } from "../../articleSearch";
-import ImageGallery from "../ImageGallery/ImageGallery";
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "../ImageModal/ImageModal";
+import { ImageGallery } from "../ImageGallery/ImageGallery";
+import { LoadMoreBtn } from "../LoadMoreBtn/LoadMoreBtn";
+import { ImageModal } from "../ImageModal/ImageModal";
 import Loading from "../Loading/Loading";
-import { Article } from "./App.types";
+import { Images } from "./App.types";
 
-export default function App() {
-  const [articles, setArticles] = useState<Article[]>([]);
+export const App: React.FC = () => {
+  const [images, setImages] = useState<Images[]>([]);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -26,14 +26,14 @@ export default function App() {
   const handleSearch = (search: string) => {
     setSearchTerm(`${search}/${Date.now()}`);
     setPage(1);
-    setArticles([]);
+    setImages([]);
   };
 
   useEffect(() => {
     if (searchTerm === "") {
       return;
     }
-    async function getData() {
+    const getData = async (): Promise<void> => {
       try {
         setError(false);
         setIsLoading(true);
@@ -41,7 +41,7 @@ export default function App() {
         if (data.length === 0) {
           toast.error("No results found.");
         } else {
-          setArticles((prevArticles) => {
+          setImages((prevArticles) => {
             return [...prevArticles, ...data];
           });
         }
@@ -52,7 +52,7 @@ export default function App() {
       } finally {
         setIsLoading(false);
       }
-    }
+    };
     getData();
   }, [searchTerm, page]);
 
@@ -64,11 +64,11 @@ export default function App() {
 
       {error && <b>Whops there was an error please reload...</b>}
 
-      {articles.length !== 0 && (
-        <ImageGallery items={articles} onImageClick={setSelectedImage} />
+      {images.length !== 0 && (
+        <ImageGallery items={images} onImageClick={setSelectedImage} />
       )}
 
-      {articles.length > 0 && !isLoading && (
+      {images.length > 0 && !isLoading && (
         <div>
           <LoadMoreBtn setPage={setPage} isLoading={isLoading} />
         </div>
@@ -84,4 +84,4 @@ export default function App() {
       )}
     </section>
   );
-}
+};
